@@ -1,4 +1,5 @@
 import { useState } from "react";
+import uniqid from "uniqid";
 import { useDispatch } from "react-redux";
 import { addCharacter } from "../features/characters/characterSlice";
 import Character from "./Character";
@@ -21,11 +22,11 @@ export default function StarWars() {
   function getSearchResults() {
     if (data.name)
       return (
-        <div className="group relative w-full h-fit">
+        <div className="group relative h-fit">
           <Character data={data} />
           <button
-            onClick={() => dispatch(addCharacter({ data }))}
-            className="invisible group-hover:visible hover:bg-stone-900 absolute top-4 right-4 text-md text-yellow-500 bg-stone-700 px-4 py-1.5 rounded-lg"
+            onClick={() => dispatch(addCharacter({ data, id: uniqid() }))}
+            className="add-button right-2 top-2"
           >
             +
           </button>
@@ -34,8 +35,11 @@ export default function StarWars() {
   }
 
   return (
-    <div className="flex flex-col items-start min-w-[300px]">
-      <form onSubmit={(e) => fetchCharacter(e)} className="w-full mb-4">
+    <div className="flex flex-col items-start border-yellow-600 border-4 p-6 rounded-xl">
+      <form
+        onSubmit={(e) => fetchCharacter(e)}
+        className=" mb-4 whitespace-nowrap "
+      >
         <input
           onChange={(e) => setID(e.target.value)}
           value={id}
@@ -43,7 +47,7 @@ export default function StarWars() {
           placeholder="search character id"
           className="rounded-l-lg px-4 py-2 text-black"
         />
-        <button className="bg-yellow-500 text-black px-4 py-2 rounded-r-lg">
+        <button className="bg-yellow-500 text-black px-4 py-2 rounded-r-lg hover:bg-yellow-600 smooth">
           search
         </button>
       </form>

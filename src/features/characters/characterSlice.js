@@ -13,8 +13,12 @@ export const characterSlice = createSlice({
     addCharacter: (state, action) => {
       state.value.push(action.payload);
     },
+    removeCharacter: (state, action) => {
+      const characterID = action.payload;
+      state.value.splice(characterID, 1);
+    },
   },
 });
 
-export const { addCharacter } = characterSlice.actions;
+export const { addCharacter, removeCharacter } = characterSlice.actions;
 export default characterSlice.reducer;

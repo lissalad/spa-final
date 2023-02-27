@@ -9,3 +9,11 @@ html {
 body {
   @apply bg-black text-yellow-500;
 }
+
+.add-button, .remove-button {
+  @apply md:last:invisible group-hover:visible hover:bg-stone-900 absolute text-sm text-yellow-500 bg-stone-700 px-4 py-1.5 rounded-lg transition-all duration-200;
+}
+
+.smooth {
+  @apply transition-all duration-200;
+}
